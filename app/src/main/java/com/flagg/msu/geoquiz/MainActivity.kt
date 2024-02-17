@@ -33,21 +33,30 @@ class MainActivity : AppCompatActivity() {
         binding.trueButton.setOnClickListener { view: View ->
             // Do something in response to the click here
             checkAnswer(true)
+            binding.trueButton.isEnabled = !(binding.trueButton.isEnabled)
+            binding.falseButton.isEnabled = !(binding.falseButton.isEnabled)
         }
 
         binding.falseButton.setOnClickListener { view: View ->
             // Do something in response to the click here
             checkAnswer(false)
+            binding.trueButton.isEnabled = !(binding.trueButton.isEnabled)
+            binding.falseButton.isEnabled = !(binding.falseButton.isEnabled)
         }
 
         binding.nextButton.setOnClickListener {
             currentIndex = (currentIndex + 1) % questionBank.size
             updateQuestion()
+            binding.trueButton.isEnabled = !(binding.trueButton.isEnabled)
+            binding.falseButton.isEnabled = !(binding.falseButton.isEnabled)
+            binding.previousButton.isEnabled = ! (binding.previousButton.isEnabled)
         }
 
         binding.previousButton.setOnClickListener {
             currentIndex = (currentIndex - 1) % questionBank.size
             updateQuestion()
+            binding.trueButton.isEnabled = !(binding.trueButton.isEnabled)
+            binding.falseButton.isEnabled = !(binding.falseButton.isEnabled)
         }
 
         binding.questionTextView.setOnClickListener {
@@ -56,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         updateQuestion()
+
     }
 
     override fun onStart() {
