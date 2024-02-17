@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             updateQuestion()
             binding.trueButton.isEnabled = !(binding.trueButton.isEnabled)
             binding.falseButton.isEnabled = !(binding.falseButton.isEnabled)
-            binding.previousButton.isEnabled = ! (binding.previousButton.isEnabled)
+            binding.previousButton.isEnabled = !(binding.previousButton.isEnabled)
         }
 
         binding.previousButton.setOnClickListener {
