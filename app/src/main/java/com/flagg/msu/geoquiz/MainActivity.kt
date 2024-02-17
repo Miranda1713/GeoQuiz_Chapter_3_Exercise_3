@@ -110,4 +110,11 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show()
     }
+
+    private fun correctAnswer(userAnswer: Boolean) {
+        val messageResId = if (userAnswer == correctAnswer) {
+
+        }
+
+    }
 }
