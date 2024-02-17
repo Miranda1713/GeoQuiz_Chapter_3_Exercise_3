@@ -9,6 +9,8 @@ import com.flagg.msu.geoquiz.databinding.ActivityMainBinding
 import android.util.Log
 
 private const val TAG = "MainActivity"
+private val count = Counter()
+val totalCount = count
 
 class MainActivity : AppCompatActivity() {
 
@@ -109,12 +111,26 @@ class MainActivity : AppCompatActivity() {
 
             Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show()
-    }
-
-    private fun correctAnswer(userAnswer: Boolean) {
-        val messageResId = if (userAnswer == correctAnswer) {
+        if (currentIndex == 6) {
+            count.getCount().toString()
+        }
 
         }
 
     }
-}
+
+    class Counter {
+        private var count: Int = 0
+        fun addCount() {
+            count++
+        }
+
+        fun getCount(): Int {
+            return count
+        }
+
+        fun Counter.Times() {
+            var percentage = (count * 100) / totalCount
+        }
+
+    }
