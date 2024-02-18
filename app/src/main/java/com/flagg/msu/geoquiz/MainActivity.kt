@@ -7,12 +7,14 @@ import android.widget.Button
 import android.widget.Toast
 import com.flagg.msu.geoquiz.databinding.ActivityMainBinding
 import android.util.Log
+import android.widget.TextView
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var scoreTextView: TextView
 
     private val questionBank = listOf(
         Question(R.string.question_australia, true),
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onCreate(Bundle?) called")
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        scoreTextView = findViewById(R.id.score)
 
         binding.trueButton.setOnClickListener { view: View ->
             // Do something in response to the click here
@@ -110,9 +113,6 @@ class MainActivity : AppCompatActivity() {
         }
             Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show()
-        if (currentIndex = questionBank.size - 1) {
-            displayCorrectScore()
-        }
         }
 
     private fun correctScore(): String {

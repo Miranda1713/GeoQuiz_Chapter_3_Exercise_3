@@ -12,5 +12,5 @@
     <string name="previous_button">Previous</string>
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>
-    <string name="correctCount_toast"></string>
+    <string name="score">Score: 0%</string>
 </resources>
