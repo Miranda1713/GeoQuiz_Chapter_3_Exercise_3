@@ -9,8 +9,6 @@ import com.flagg.msu.geoquiz.databinding.ActivityMainBinding
 import android.util.Log
 
 private const val TAG = "MainActivity"
-private val count = Counter()
-val totalCount = count
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         Question(R.string.question_asia, true))
 
     private var currentIndex = 0
+    private var correctCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,33 +103,29 @@ class MainActivity : AppCompatActivity() {
         val correctAnswer = questionBank[currentIndex].answer
 
         val messageResId = if (userAnswer == correctAnswer) {
+            correctCount++ //Chat GPT
             R.string.correct_toast
         } else {
             R.string.incorrect_toast
         }
-
             Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show()
-        if (currentIndex == 6) {
-            count.getCount().toString()
+        if (currentIndex = questionBank.size - 1) {
+            displayCorrectScore()
+        }
         }
 
-        }
-
+    private fun correctScore(): String {
+        val percentage = (correctCount.toDouble() / questionBank.size * 100).toString() //Chat GPT
+        return percentage //Chat GPT
     }
 
-    class Counter {
-        private var count: Int = 0
-        fun addCount() {
-            count++
+    private fun displayCorrectScore() { //chatGPT
+        if(currentIndex == questionBank.size - 1) { //chatGPT
+            val percentage = correctScore() //ChatGPT
+            Toast.makeText(this, "Score: $percentage%", Toast.LENGTH_SHORT)
+                .show() //ChatGPT
         }
-
-        fun getCount(): Int {
-            return count
-        }
-
-        fun Counter.Times() {
-            var percentage = (count * 100) / totalCount
-        }
+    }
 
     }
