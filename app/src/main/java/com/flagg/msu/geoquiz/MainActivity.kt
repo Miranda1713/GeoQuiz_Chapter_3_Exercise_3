@@ -3,18 +3,15 @@ package com.flagg.msu.geoquiz
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import com.flagg.msu.geoquiz.databinding.ActivityMainBinding
 import android.util.Log
-import android.widget.TextView
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var scoreTextView: TextView
 
     private val questionBank = listOf(
         Question(R.string.question_australia, true),
@@ -32,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onCreate(Bundle?) called")
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        scoreTextView = findViewById(R.id.score)
 
         binding.trueButton.setOnClickListener { view: View ->
             // Do something in response to the click here
@@ -106,26 +102,17 @@ class MainActivity : AppCompatActivity() {
         val correctAnswer = questionBank[currentIndex].answer
 
         val messageResId = if (userAnswer == correctAnswer) {
-            correctCount++ //Chat GPT
+            correctCount++
             R.string.correct_toast
         } else {
             R.string.incorrect_toast
         }
             Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show()
+            if (currentIndex == questionBank.size - 1) { //Chat GPT
+                val percentage = (correctCount.toDouble() / questionBank.size * 100.0) //Chat GPT
+                Toast.makeText(this, "Score: $percentage%", Toast.LENGTH_SHORT) //Chat GPT
+                    .show() //Chat GPT
+            }
         }
-
-    private fun correctScore(): String {
-        val percentage = (correctCount.toDouble() / questionBank.size * 100).toString() //Chat GPT
-        return percentage //Chat GPT
-    }
-
-    private fun displayCorrectScore() { //chatGPT
-        if(currentIndex == questionBank.size - 1) { //chatGPT
-            val percentage = correctScore() //ChatGPT
-            Toast.makeText(this, "Score: $percentage%", Toast.LENGTH_SHORT)
-                .show() //ChatGPT
-        }
-    }
-
     }
