@@ -33,30 +33,29 @@ class MainActivity : AppCompatActivity() {
         binding.trueButton.setOnClickListener { view: View ->
             // Do something in response to the click here
             checkAnswer(true)
-            binding.trueButton.isEnabled = !(binding.trueButton.isEnabled)
-            binding.falseButton.isEnabled = !(binding.falseButton.isEnabled)
+            binding.trueButton.isEnabled = false
+            binding.falseButton.isEnabled = false
         }
 
         binding.falseButton.setOnClickListener { view: View ->
             // Do something in response to the click here
             checkAnswer(false)
-            binding.trueButton.isEnabled = !(binding.trueButton.isEnabled)
-            binding.falseButton.isEnabled = !(binding.falseButton.isEnabled)
+            binding.trueButton.isEnabled = false
+            binding.falseButton.isEnabled = false
         }
 
         binding.nextButton.setOnClickListener {
             currentIndex = (currentIndex + 1) % questionBank.size
             updateQuestion()
-            binding.trueButton.isEnabled = !(binding.trueButton.isEnabled)
-            binding.falseButton.isEnabled = !(binding.falseButton.isEnabled)
-            binding.previousButton.isEnabled = !(binding.previousButton.isEnabled)
+            binding.trueButton.isEnabled = true
+            binding.falseButton.isEnabled = true
         }
 
         binding.previousButton.setOnClickListener {
             currentIndex = (currentIndex - 1) % questionBank.size
             updateQuestion()
-            binding.trueButton.isEnabled = !(binding.trueButton.isEnabled)
-            binding.falseButton.isEnabled = !(binding.falseButton.isEnabled)
+            binding.trueButton.isEnabled = false
+            binding.falseButton.isEnabled = false
         }
 
         binding.questionTextView.setOnClickListener {
@@ -114,5 +113,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Score: $percentage%", Toast.LENGTH_SHORT) //Chat GPT
                     .show() //Chat GPT
             }
+        currentIndex = 0
         }
     }
