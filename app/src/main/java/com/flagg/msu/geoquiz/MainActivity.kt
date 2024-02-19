@@ -113,6 +113,5 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Score: $percentage%", Toast.LENGTH_SHORT) //Chat GPT
                     .show() //Chat GPT
             }
-        currentIndex = 0
         }
     }
